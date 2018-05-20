@@ -55,9 +55,15 @@ class Footer:
         return True
 
 
-class Search:
-    pass
-
-
 class Newsletter:
-    pass
+    def __init__(self, driver: WebDriver):
+        self.driver = driver
+        self.newsletter = self.driver.find_element_by_id('newsletter')
+        self.email_input = self.driver.find_element_by_id('newsletter-input')
+        self.newsletter_button = self.driver.find_element_by_id('newsletter-btn')
+
+    def present(self) -> bool:
+        for element in (self.newsletter, self.email_input, self.newsletter_button):
+            if not element.is_displayed():
+                return False
+        return True
