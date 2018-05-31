@@ -11,8 +11,10 @@ class HomePage:
         self.driver.get(PageUrl().general_url())
 
     def check_url(self) -> bool:
-        if not self.driver.current_url == (PageUrl().general_url()):
-            return False
+        if not self.driver.current_url == PageUrl().general_url():
+            return True
+
+        return False
 
 
 class WhereDoYouWantToGo:

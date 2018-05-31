@@ -3,7 +3,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 class PageUrl:
     def general_url(self):
-        url = "https://www.campsited.com/"
+        url = "https://www.campsited.com"
         return url
 
 
