@@ -27,19 +27,13 @@ class WhereDoYouWantToGo:
     def country(self):
         pass
 
-    def country_autocomplete(self):
+    def select_country_autocomplete(self):
         self.select_input.click()
         self.belgium.click()
 
-        if 'campsite-select__input valid' not in self.select_input.get_attribute('class'):
-            return False
-
-    def region(self):
+    def set_region(self):
         self.select_input.click()
         self.select_input.send_keys('Occitania')
-
-        if 'campsite-select__input valid' not in self.select_input.get_attribute('class'):
-            return False
 
     def region_autocomplete(self):
         pass
@@ -56,12 +50,21 @@ class WhereDoYouWantToGo:
     def campsite_name_autocomplete(self):
         pass
 
+    def location_is_set(self):
+        if 'campsite-select__input valid' not in self.select_input.get_attribute('class'):
+            return False
+
+        return True
+
 
 class DatePicker:
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        self.check_in = self.driver.find_element_by_id('check_in_side')
+        self.check_in = self.driver.find_element_by_id('check-in-select')
         self.check_out = self.driver.find_element_by_id('check-out-select')
+
+    def set_the_date(self):
+        self.check_in.click()
 
 
 class Adults:
