@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.remote.webdriver import WebDriver
 
 from camp_at.pages.common_elements import PageUrl
@@ -6,6 +8,7 @@ from camp_at.pages.common_elements import PageUrl
 class HomePage:
     def __init__(self, driver: WebDriver):
         self.driver = driver
+        #self.find_campsite_button = self.driver.find_element_by_xpath('//*[@id="search_form"]/div[3]/button')
 
     def open(self):
         self.driver.get(PageUrl().general_url())
@@ -15,6 +18,10 @@ class HomePage:
             return True
 
         return False
+
+    def perform_search(self):
+        #self.find_campsite_button.click()
+        self.driver.find_element_by_xpath('//*[@id="search_form"]/div[3]/button').click()
 
 
 class WhereDoYouWantToGo:
@@ -65,6 +72,9 @@ class DatePicker:
 
     def set_the_date(self):
         self.check_in.click()
+        self.driver.find_element_by_xpath('/html/body/div[10]/div[2]/div[1]/table/tbody/tr[3]/td[2]').click()
+        time.sleep(2)
+        self.driver.find_element_by_xpath('/html/body/div[10]/div[2]/div[1]/table/tbody/tr[3]/td[6]').click()
 
 
 class Adults:
@@ -83,8 +93,19 @@ class Children:
         self.increase_children_btn = self.driver.find_element_by_id('btn-incr-children')
         self.decrease_children_btn = self.driver.find_element_by_id('btn-decr-children')
 
-    def number(self):
-        pass
+    def set_number(self):
+        self.children_select.click()
+        self.increase_children_btn.click()
+        time.sleep(1)
+        # open age dropdown
+        self.driver.find_element_by_xpath('//*[@id="children-select"]/div[3]/div[2]/div[2]/div[2]/div/div/div[1]/div/div').click()
+        time.sleep(1)
+        self.driver.find_element_by_xpath('//*[@id="children-select"]/div[3]/div[2]/div[2]/div[2]/div/div/div[2]/ul/li[3]').click()
+
+
+
+
+
 
     def age(self):
         pass
